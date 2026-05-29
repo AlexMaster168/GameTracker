@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", serif;
+  --font-body: "EB Garamond", serif;
+
+  --color-gold: #e9c08a;
+  --color-gold-bright: #f4d3a3;
+  --color-peach: #f2c094;
+  --color-ink: #0a0f16;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: #e7e2d8;
+  background-color: #060a10;
+}
+
+/*
+ * Кинематографичный фон: тёмная атмосфера леса с лучом света сверху.
+ * Слои: тёплый луч по центру сверху → глубокий сине-зелёный сумрак →
+ * затемнение по краям (виньетка). Работает без внешних картинок.
+ * Чтобы подставить свой скрин — задай --bg-image в .app-bg.
+ */
+.app-bg {
+  position: relative;
+  min-height: 100%;
+  background:
+    radial-gradient(
+      120% 80% at 50% -10%,
+      rgba(243, 214, 170, 0.18) 0%,
+      rgba(243, 214, 170, 0.06) 18%,
+      transparent 42%
+    ),
+    radial-gradient(
+      90% 70% at 50% 0%,
+      rgba(120, 160, 150, 0.12) 0%,
+      transparent 55%
+    ),
+    linear-gradient(180deg, #0c151a 0%, #0a1016 40%, #070b11 100%);
+  background-attachment: fixed;
+}
+
+/* Виньетка по краям — добавляет кинематографичности. */
+.app-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    100% 100% at 50% 35%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 0;
+}
+
+.app-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Заголовки в фирменном золотом стиле. */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.title-gold {
+  font-family: var(--font-display);
+  letter-spacing: 0.18em;
+  background: linear-gradient(180deg, #f6dcb0 0%, #e0a866 60%, #caa060 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 28px rgba(233, 192, 138, 0.25);
+}
+
+/* Тонкая золотая линия-разделитель. */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(233, 192, 138, 0.5),
+    transparent
+  );
+}
+
+/* Карточка из матового стекла. */
+.glass {
+  background: rgba(12, 18, 26, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(233, 192, 138, 0.12);
+}

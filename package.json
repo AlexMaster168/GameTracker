@@ -1,0 +1,16 @@
+{
+  "name": "games-by-alexmaster",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack кинематографичный каталог пройденных игр (React + Elysia + Drizzle + SQLite)",
+  "scripts": {
+    "setup": "bun run install:all && bun run db:reset",
+    "install:all": "cd backend && bun install && cd ../frontend && bun install",
+    "db:reset": "cd backend && bun run db:generate && bun run db:migrate && bun run db:seed",
+    "dev": "concurrently -n backend,frontend -c blue,magenta \"cd backend && bun run dev\" \"cd frontend && bun run dev\"",
+    "start": "bun run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
